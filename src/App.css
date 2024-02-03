@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'TTmono-normal';
+    src: url('/public/TTInterphasesProMonoRegular.otf');
+}
+
+@font-face {
+    font-family: 'TTmono-italic';
+    src: url('/public/TTInterphasesProMonoItalic.otf');
+}
+
+* {
+    font-family: 'TTmono-italic';
+    margin: 0;
+    padding: 0;
+}
