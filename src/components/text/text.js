@@ -2,6 +2,9 @@ import { Html, Text3D } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { createRef, useRef } from "react";
 import { useGrid } from "../../hooks/use-grid";
+import { Wall } from "../canvas/world/wall";
+import { theme } from "../theme/theme";
+
 
 export const TextGroup = ({
     fontStyle,
@@ -11,17 +14,22 @@ export const TextGroup = ({
     colStart,
     rowStart,
     lineHeightModifier,
-    isVerticalyCentered
+    isVerticalyCentered,
+    height,
 }) => {
     const { grid } = useGrid()
+    const groupRef = useRef()
+
     if (grid) {
         const z = grid.rowCoords[rowStart[grid.breakpoint]]
         const lineHeight = lineHeightModifier || 0
         const style = fontStyle || 'italic'
         return (
-            <group>
+            <group ref={groupRef}>
                 {content.map((element, index) =>
                     <Text
+                        key={index}
+                        height={height}
                         fontStyle={style}
                         grid={grid}
                         content={element}
@@ -42,6 +50,7 @@ export const Text = ({
     fontSize,
     colStart,
     positionZ,
+    height,
     rowStart,
     grid
 }) => {
@@ -50,6 +59,7 @@ export const Text = ({
     const rigidBodyTextRef = useRef(splitText.map(() => createRef()))
     const dTextRef = useRef(splitText.map(() => createRef()))
     const groupRef = useRef()
+    const charHeight = height || .5
     if (grid) {
         const x = grid.colsCoords[colStart[grid.breakpoint]]
         return (
@@ -64,7 +74,7 @@ export const Text = ({
                                 mass={0.01}
                                 density={0.01}
                                 position={[
-                                    x.start + index * (fontSize[grid.breakpoint] / 21.85),
+                                    x.start + index * (fontSize[grid.breakpoint] / 26),
                                     0.1,
                                     positionZ + (fontSize[grid.breakpoint] / 26.6667)]}
                                 rotation={[- Math.PI / 2, 0, 0]}
@@ -78,13 +88,11 @@ export const Text = ({
                                     ref={dTextRef.current[index]}
                                     font={`/TTInterphasesProMono_${fontStyle}.json`}
                                     size={fontSize[grid.breakpoint] / 26.6667}
-                                    height={.3}
+                                    height={charHeight}
                                     curveSegments={6}
-                                    castShadow
-                                    receiveShadow
                                 >
                                     {element}
-                                    <meshStandardMaterial color="#1A1818" />
+                                    <meshBasicMaterial color={theme.colors.text} />
                                 </Text3D>
                             </RigidBody>
                         )
@@ -98,16 +106,16 @@ export const Text = ({
                     position={[grid.colsCoords[colStart[grid.breakpoint]].start, 0.5, positionZ]}
                 >
                     <h1 style={{
-                        color: '#1A1818',
+                        color: theme.colors.text,
                         fontSize: `${fontSize[grid.breakpoint]}px`,
-                        letterSpacing: `${fontSize[grid.breakpoint] / 3.14}px`,
+                        letterSpacing: `${fontSize[grid.breakpoint] / 5.9}px`,
                         lineHeight: 0.75,
                         fontWeight: 'lighter',
                         fontFamily: `TTmono-${fontStyle}`
                     }}>
                         {splitText.map((element, index) => {
                             return (
-                                <span ref={htlmTextRef.current[index]} style={{ fontFamily: `TTmono-${fontStyle}` }}>
+                                <span key={index} ref={htlmTextRef.current[index]} style={{ fontFamily: `TTmono-${fontStyle}` }}>
                                     {element}
                                 </span>
                             )

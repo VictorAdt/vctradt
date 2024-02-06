@@ -55,7 +55,11 @@ export const useGrid = () => {
                 rowCoords,
                 rowNumber,
                 rowWidth,
-                breakpoint
+                breakpoint,
+                viewport: {
+                    x: xSize,
+                    z: zSize
+                }
             })
         }
     }
@@ -68,6 +72,5 @@ export const useGrid = () => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-
-    return { grid };
+    return { grid }
 }

@@ -3,6 +3,7 @@ import { RigidBody } from "@react-three/rapier";
 import { useMemo, useRef } from "react";
 import { useGrid } from "../../../hooks/use-grid";
 import { isEven, randBetween } from "../../../utils/misc";
+import { theme } from "../../theme/theme";
 
 
 
@@ -24,7 +25,7 @@ export const Brick = ({ position, color, dimensions }) => {
             density={0.01} >
             <mesh ref={meshRef} >
                 <boxGeometry args={dimensions} />
-                <meshStandardMaterial color={color ? color : 'orange'} />
+                <meshBasicMaterial color={theme.colors.elements} />
             </mesh>
         </RigidBody>
     )
@@ -57,6 +58,7 @@ export const BrickAndBalls = () => {
                 const z = grid.rowCoords[e[1]].start + height / 2
                 return (
                     <Brick
+                        key={i}
                         position={[x, 0.1, z]}
                         dimensions={[
                             width,
@@ -72,6 +74,7 @@ export const BrickAndBalls = () => {
                 const z = grid.rowCoords[e[1]].start + height / 2
                 return (
                     <Ball
+                        key={i}
                         position={[x - .3, 0.1, z + .15]}
                     />
                 )
@@ -90,13 +93,13 @@ const Ball = ({ position }) => {
         >
             <mesh ref={meshRef}>
                 <sphereGeometry args={[width]} />
-                <meshStandardMaterial color="orange" />
+                <meshBasicMaterial color={theme.colors.elements} />
             </mesh>
         </RigidBody>
     )
 }
 
-export const Wall = ({ colStart, colEnd, thickness, rowStart, isVerticalyCenter }) => {
+export const Wall = ({ colStart, colEnd, thickness, rowStart, isVerticalyCenter, marginTop }) => {
     const { grid } = useGrid()
     if (grid) {
         const bigBrickN = colEnd[grid.breakpoint] - colStart[grid.breakpoint]
@@ -105,6 +108,7 @@ export const Wall = ({ colStart, colEnd, thickness, rowStart, isVerticalyCenter 
         const smallBrickWidth = grid.gutterSize
         const x = grid.colsCoords[colStart[grid.breakpoint]]
         const z = grid.rowCoords[rowStart[grid.breakpoint]]
+        const margin = marginTop ? marginTop[grid.breakpoint] : 0
         return (
             <group position={[x.start, 0.1, isVerticalyCenter ? z.middle : z.start + thickness / 2]}>
                 {Array.from({ length: 1 }).map((_, indexH) => {
@@ -115,6 +119,7 @@ export const Wall = ({ colStart, colEnd, thickness, rowStart, isVerticalyCenter 
                             Math.floor(indexL / 2) * (bigBrickWidth + smallBrickWidth) + bigBrickWidth + smallBrickWidth / 2;
                         return (
                             <Brick
+                                key={indexL}
                                 dimensions={[
                                     width,
                                     1,
@@ -123,7 +128,7 @@ export const Wall = ({ colStart, colEnd, thickness, rowStart, isVerticalyCenter 
                                 position={[
                                     start,
                                     0.1,
-                                    0,
+                                    0 + margin,
                                 ]} />
                         )
                     })

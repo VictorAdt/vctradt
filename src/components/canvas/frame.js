@@ -28,7 +28,7 @@ const Frame = ({ color }) => {
                 >
                     <mesh>
                         <boxGeometry args={[size, size, size]} />
-                        <meshStandardMaterial color={'blue'} />
+                        <meshBasicMaterial color={'blue'} />
                     </mesh>
                 </RigidBody>
                 <RigidBody
@@ -37,7 +37,7 @@ const Frame = ({ color }) => {
                     mass={0.1} >
                     <mesh>
                         <boxGeometry args={[size, size, size]} />
-                        <meshStandardMaterial color={'red'} />
+                        <meshBasicMaterial color={'red'} />
                     </mesh>
                 </RigidBody>
                 <RigidBody
@@ -46,7 +46,7 @@ const Frame = ({ color }) => {
                     mass={0.1} >
                     <mesh>
                         <boxGeometry args={[size, size, size]} />
-                        <meshStandardMaterial color={'purple'} />
+                        <meshBasicMaterial color={'purple'} />
                     </mesh>
                 </RigidBody>
                 <RigidBody
@@ -55,7 +55,7 @@ const Frame = ({ color }) => {
                     mass={0.1} >
                     <mesh>
                         <boxGeometry args={[size, size, size]} />
-                        <meshStandardMaterial color={'purple'} />
+                        <meshBasicMaterial color={'purple'} />
                     </mesh>
                 </RigidBody>
             </>);

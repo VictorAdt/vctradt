@@ -5,7 +5,7 @@ import { Spinner } from './spinner'
 
 export const Canvas = ({ children, rest }) => {
     return (
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={null}>
             <R3FCanvas id="canvas" {...rest}>
                 {children}
             </R3FCanvas>

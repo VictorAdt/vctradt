@@ -1,16 +1,28 @@
 export const theme = {
-    colors: {},
+    colors: {
+        background: '#141414',
+        row: {
+            base: '#201D1D',
+            hover: '#141212',
+        },
+        col: {
+            base: '#201D1D',
+            hover: '#141212',
+        },
+        text: 'white',
+        elements: 'white'
+    },
     breakpoints: {
-        xs: 320,
-        sm: 568,
-        md: 744,
-        lg: 1280,
-        xl: 1540,
+        xs: 350, // 0 - 350 = xs
+        sm: 568, // 351 - 568 = sm
+        md: 844, // 569 - 844 = md
+        lg: 1280, // 745 - 1280 = lg
+        xl: 1540, // 1541 - infinity = xl
     },
     grid: {
         col: {
-            xs: 3,
-            sm: 3,
+            xs: 4,
+            sm: 4,
             md: 12,
             lg: 12,
             xl: 12,

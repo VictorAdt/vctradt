@@ -1,9 +1,8 @@
-export const LEVA_KEY = 'rapier-revolute-joint-vehicle'
 export const RAPIER_UPDATE_PRIORITY = -50
 export const AFTER_RAPIER_UPDATE = RAPIER_UPDATE_PRIORITY - 1
-export const AXLE_TO_CHASSIS_JOINT_STIFFNESS = 250000
-export const AXLE_TO_CHASSIS_JOINT_DAMPING = 200
-export const DRIVEN_WHEEL_FORCE = 700
+export const AXLE_TO_CHASSIS_JOINT_STIFFNESS = 150000
+export const AXLE_TO_CHASSIS_JOINT_DAMPING = 20
+export const DRIVEN_WHEEL_FORCE = 600
 export const DRIVEN_WHEEL_DAMPING = 5
 
 export const CONTROLS = {
