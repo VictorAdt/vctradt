@@ -1,8 +1,8 @@
 export const RAPIER_UPDATE_PRIORITY = -50
 export const AFTER_RAPIER_UPDATE = RAPIER_UPDATE_PRIORITY - 1
-export const AXLE_TO_CHASSIS_JOINT_STIFFNESS = 150000
-export const AXLE_TO_CHASSIS_JOINT_DAMPING = 20
-export const DRIVEN_WHEEL_FORCE = 600
+export const AXLE_TO_CHASSIS_JOINT_STIFFNESS = 200000
+export const AXLE_TO_CHASSIS_JOINT_DAMPING = 50
+export const DRIVEN_WHEEL_FORCE = 800
 export const DRIVEN_WHEEL_DAMPING = 5
 
 export const CONTROLS = {
@@ -25,5 +25,7 @@ export const CONTROLS_MAP = [
     { name: CONTROLS.liftDown, keys: ['q', 'Q'] },
 ]
 
-
-
+export const collisionGroups = {
+    ground_forklift: '',
+    fakeGround_props: '',
+}

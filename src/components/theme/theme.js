@@ -28,7 +28,7 @@ export const theme = {
             xl: 12,
         },
         gutterSize: {
-            xs: .25,
+            xs: .5,
             sm: .5,
             md: .5,
             lg: 1,

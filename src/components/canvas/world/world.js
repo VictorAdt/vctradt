@@ -17,7 +17,15 @@ export const World = () => {
     if (grid) {
         return (
             <>
-                <RigidBody name='ground' type="fixed" friction={1} scale={[150, 150, 150]} colliders='hull' position={[0, 0, 0]} rotation={[- Math.PI / 2, 0, 0]}>
+                <RigidBody
+                    name='ground'
+                    type="fixed"
+                    friction={1}
+                    scale={[150, 150, 150]}
+                    colliders='cuboid'
+                    position={[0, 0, 0]}
+                    rotation={[- Math.PI / 2, 0, 0]}
+                >
                     <mesh castShadow receiveShadow ref={planeRef} >
                         <planeGeometry />
                         <meshBasicMaterial opacity={0} transparent />

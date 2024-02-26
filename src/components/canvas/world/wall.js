@@ -21,8 +21,8 @@ export const Brick = ({ position, color, dimensions }) => {
     })*/
     return (
         <RigidBody position={position} colliders="cuboid"
-            mass={0.01}
-            density={0.01} >
+            mass={0.001}
+            density={0.001} >
             <mesh ref={meshRef} >
                 <boxGeometry args={dimensions} />
                 <meshBasicMaterial color={theme.colors.elements} />
@@ -39,16 +39,16 @@ export const BrickAndBalls = () => {
 
     const spheresPositions = {
         xs: [],
-        sm: [],
-        md: [],
-        lg: [],
+        sm: [[3, 1]],
+        md: [[8, 3], [2, 5], [11, 2]],
+        lg: [[6, 1], [8, 3], [2, 5], [11, 2],],
         xl: [[6, 1], [8, 4], [2, 5], [11, 2], [11, 5]],
     }
     const bricksPositions = {
         xs: [],
         sm: [],
-        md: [],
-        lg: [],
+        md: [[3, 4], [11, 3],],
+        lg: [[2, 1], [8, 1], [0, 2], [9, 3], [6, 5], [7, 5]],
         xl: [[2, 1], [8, 1], [0, 2], [6, 3], [9, 3], [6, 5], [7, 5]],
     }
     if (grid) {

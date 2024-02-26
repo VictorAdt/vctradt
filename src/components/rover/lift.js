@@ -1,55 +1,65 @@
-import { useGLTF, useKeyboardControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { RigidBody, useFixedJoint, usePrismaticJoint } from "@react-three/rapier";
+import { OrbitControls, useGLTF, useKeyboardControls } from "@react-three/drei";
+import { CuboidCollider, RigidBody, useFixedJoint, usePrismaticJoint } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
-import { DRIVEN_WHEEL_DAMPING } from "../../constants/constants";
-import { Vector3 } from "three";
+import { FixedJoint } from "./joint";
+import { useFrame } from "@react-three/fiber";
+import { isInRange } from "../../utils/misc";
 
-export const Lift = ({ body }) => {
+
+export const Lift = ({ body, ref }) => {
     const liftUpPressed = useKeyboardControls((state) => state.liftUp)
     const liftDownPressed = useKeyboardControls((state) => state.liftDown)
-    const platRef = useRef(null)
-    const groupRef = useRef(null)
+    const forkModel = useGLTF('/fork.glb')
+    const liftRef = useRef(null)
     const meshRef = useRef(null)
-    const liftModel = useGLTF('/lift.glb')
-
-    const [enable, setEnable] = useState(true)
-
-    const joint = usePrismaticJoint(body, platRef, [
-        [-1.3, 0, 0],
-        [0, .2, 0],
-        [0, 1, 0]
+    const min = -.25
+    const max = 1.7
+    const [targetPos, setTargetPos] = useState(min)
+    const joint = usePrismaticJoint(body, liftRef, [
+        [-.1, 0, 0], // BODY
+        [0, 0, 0], // LIFT
+        [0, 1, 0] // AXIS
     ])
 
+    /*useEffect(() => {
+    
+        joint.current.setLimits(min, max)
+        joint.current.configureMotorVelocity(.1, 1)
+        if (liftUpPressed) {
+            joint.current.configureMotorPosition(max, 1000, -1,);
+        }
+        if (liftDownPressed) {
+            joint.current.configureMotorPosition(min, 1000, -1,);
+        }
+    }, [liftUpPressed, liftDownPressed, joint]) */
+
     useEffect(() => {
-        const min = -.5
-        const max = 2
-        let lift = min
-        if (liftUpPressed) lift -= 5
-        if (liftDownPressed) lift += 5
-        joint.current?.configureMotorModel(1)
-        joint.current?.setLimits(min, max)
-        joint.current?.configureMotor(0, lift, 0, 0);
+        joint.current.setLimits(min, max)
+        joint.current.configureMotorVelocity(200, 1)
+        let loop
+        if (liftUpPressed) {
+            setTargetPos(max)
+        }
+        if (liftDownPressed) {
+            setTargetPos(min)
+        }
+        // joint.current.setLimits(targetPos, targetPos);
+        joint.current.configureMotorPosition(targetPos, 300, .1);
+        // IF HEIGHT == TARGET POS : LOCK
     }, [liftUpPressed, liftDownPressed, joint])
 
-    useFrame(() => {
-        const scale = meshRef.current.parent.position.y
-        meshRef.current.scale.x = 1 + (2.95 + scale) / 20
-        meshRef.current.scale.z = 1 + (2.95 + scale) / 20
-        meshRef.current.scale.y = 1 + (2.95 + scale) / 20
-        meshRef.current.parent.scale.x = 1 + (2.95 + scale) / 20
-        meshRef.current.parent.scale.z = 1 + (2.95 + scale) / 20
-        meshRef.current.parent.scale.y = 1 + (2.95 + scale) / 20
 
-    })
+
     return (
-        <group ref={groupRef} >
-            <RigidBody ref={platRef} colliders='hull' mass={1} density={0.01} position={[0, 0, 0]}>
-                <mesh castShadow receiveShadow ref={meshRef}>
-                    <boxGeometry args={[.25, 0.01, 1]} />
-                    <meshStandardMaterial color="red" />
-                </mesh>
+        <>
+            <RigidBody ref={liftRef} colliders='hull' mass={.001} density={.001}>
+                {<primitive ref={meshRef} object={forkModel.scene} rotation={[0, -Math.PI, 0]} scale={[.25, .25, .25]} position={[0, 0, 0]} />}
             </RigidBody>
-        </group>
+        </>
+
     )
 }
+
+// <boxGeometry args={[.25, 0.01, 1]} />
+// <meshStandardMaterial color="red" />
+

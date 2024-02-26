@@ -14,19 +14,19 @@ export const AxleJoint = ({ body, wheel, bodyAnchor, wheelAnchor, rotationAxis, 
     const backwardPressed = useKeyboardControls((state) => state.back)
 
     useEffect(() => {
-        let forward = 1 * DRIVEN_WHEEL_FORCE
-        setTimeout(() => {
-            forward = 0
-            joint.current?.configureMotorVelocity(forward, 100)
-        }, 500)
+        let forward = .8 * DRIVEN_WHEEL_FORCE
         joint.current?.configureMotorVelocity(forward, DRIVEN_WHEEL_DAMPING)
+        setTimeout(() => {
+            joint.current?.configureMotorVelocity(0, 80)
+        }, 1500)
+
     }, [])
 
     useEffect(() => {
         if (!isDriven) return
         let forward = 0
-        if (forwardPressed) forward += 1
-        if (backwardPressed) forward -= 1
+        if (forwardPressed) forward += 1.4
+        if (backwardPressed) forward -= 1.4
         forward *= DRIVEN_WHEEL_FORCE
         if (forward !== 0) {
             wheel.current?.wakeUp()
