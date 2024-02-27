@@ -11,7 +11,6 @@ function App() {
 	return (
 		<AppContainer className="App">
 			<Scene />
-			<Controls />
 			<Social />
 		</AppContainer>
 	);

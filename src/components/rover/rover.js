@@ -1,15 +1,21 @@
 import { OrbitControls, useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { CylinderCollider, RigidBody } from '@react-three/rapier'
-import React, { createRef, useRef } from 'react'
+import React, { createRef, useRef, useState } from 'react'
 import { Vector3 } from 'three'
 import { AFTER_RAPIER_UPDATE } from '../../constants/constants'
 import { AxleJoint, FixedJoint, SteeredJoint } from './joint'
 import { Lift, LiftTest, Lifttest } from './lift'
 import { isEven } from '../../utils/misc'
 import { useGrid } from '../../hooks/use-grid'
+import KeyBoard from '../overlay/keyboard'
 
 export const Rover = () => {
+
+    const [mobileControlForward, setMobileControlForward] = useState(false)
+    const [mobileControlBack, setMobileControlBack] = useState(false)
+    const [mobileControlLeft, setMobileControlLeft] = useState(false)
+    const [mobileControlRight, setMobileControlRight] = useState(false)
     const chassisRef = useRef(null)
     const chassisModel = useGLTF('/chassis.glb')
     const { grid } = useGrid()
@@ -98,6 +104,8 @@ export const Rover = () => {
                                 />
                             ) : (
                                 <SteeredJoint
+                                    mobileControlLeft={mobileControlLeft}
+                                    mobileControlRight={mobileControlRight}
                                     body={chassisRef}
                                     wheel={axleRefs.current[i]}
                                     bodyAnchor={wheel.axlePosition}
@@ -108,6 +116,8 @@ export const Rover = () => {
 
                             {/* wheel to axle joint */}
                             <AxleJoint
+                                mobileControlForward={mobileControlForward}
+                                mobileControlBack={mobileControlBack}
                                 body={axleRefs.current[i]}
                                 wheel={wheelRefs.current[i]}
                                 bodyAnchor={[0, 0, wheel.side === 'left' ? 0.35 : -0.35]}
@@ -119,6 +129,16 @@ export const Rover = () => {
                         </React.Fragment>
                     ))}
                 </group >
+                <KeyBoard grid={grid} setInput={{
+                    setMobileControlForward,
+                    setMobileControlBack,
+                    setMobileControlLeft,
+                    setMobileControlRight
+                }}
+                    mobileControlForward={mobileControlForward}
+                    mobileControlBack={mobileControlBack}
+                    mobileControlLeft={mobileControlLeft}
+                    mobileControlRight={mobileControlRight} />
             </>)
     }
 

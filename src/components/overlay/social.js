@@ -30,19 +30,22 @@ export const Social = () => {
         config: { mass: 4, tension: 3000, friction: 100 },
     })
 
-    const [trail, api] = useTrail(
-        2,
-        () => ({
-            y: isClicked ? `${((socials.length * iconSizeN) + (socials.length) * iconSpacing) + containerpadding * 2}px` : 0,
-            config: { mass: 4, tension: 3000, friction: 100 },
-        }),
-        []
-    )
+    const [buttonSprings] = useSprings(socials.length, i => {
+        console.log(i);
+        const y = isClicked ? i * 30 : 0
+        return ({
+            from: { y: 0 },
+            to: { y: isClicked ? i * 30 : 0 },
+        })
+    })
 
-    const [buttonSprings] = useSprings(socials.length, i => ({
-        y: isClicked ? 20 : 0,
-        config: { mass: 1, tension: 100, friction: 100 },
-    }))
+    const [springs, api] = useSprings(
+        socials.length,
+        (i) => ({
+
+            y: isClicked ? i * -50 : 0
+        }),
+    )
 
     return (
         <FloatingButtonContainer
@@ -53,9 +56,11 @@ export const Social = () => {
                 {Array.from({ length: 3 }).map(() => <Dot />)}
             </FloatingButton>
             <ItemsContaier>
-                {buttonSprings.map((props, index) => (
-                    <FloatingButton style={props} key={index} />
-                ))}
+                {springs.map((props, index) => {
+                    return (
+                        <FloatingButton style={props} key={index} />
+                    )
+                })}
             </ItemsContaier>
         </FloatingButtonContainer>
     );

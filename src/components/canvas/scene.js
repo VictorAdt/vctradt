@@ -1,6 +1,6 @@
 import { usePageVisible } from "../../hooks/use-page-visible"
 import { Physics } from "@react-three/rapier"
-import { Html, KeyboardControls, OrbitControls } from "@react-three/drei"
+import { CameraControls, Html, KeyboardControls, OrbitControls } from "@react-three/drei"
 import { Rover } from "../rover/rover"
 import { World } from "./world/world"
 import { CONTROLS_MAP, RAPIER_UPDATE_PRIORITY } from "../../constants/constants"
@@ -11,7 +11,7 @@ import Logo from "../text/logo"
 import { BrickAndBalls, Wall } from "./world/wall"
 import { EffectComposer, Noise, Pixelation, Scanline } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
-import { Forklift } from "../rover/forklift"
+import KeyBoard from "../overlay/keyboard"
 
 
 export const Scene = () => {
@@ -63,7 +63,7 @@ export const Scene = () => {
                         marginTop={{ xs: 6, sm: 6, md: 5.5, lg: 7.5, xl: 7.5 }}
                         colEnd={{ xs: 2, sm: 2, md: 6, lg: 5, xl: 4 }}
                     />
-                    {<TextGroup
+                    <TextGroup
                         lineHeightModifier={6}
                         fontStyle='normal'
                         content={[`I'm a developer and`, 'a graphic designer.', 'Based in Lausanne - ', 'Switzerland']}
@@ -71,7 +71,7 @@ export const Scene = () => {
                         fontSize={{ xs: 20, sm: 20, md: 20, lg: 20, xl: 20 }}
                         colStart={{ xs: 0, sm: 0, md: 1, lg: 1, xl: 2 }}
                         rowStart={{ xs: 2, sm: 2, md: 2, lg: 2, xl: 2 }}
-                    />}
+                    />
                     <BrickAndBalls />
                 </Physics>
                 <EffectComposer>
