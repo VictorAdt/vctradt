@@ -27,5 +27,6 @@ export const CONTROLS_MAP = [
 
 export const collisionGroups = {
     ground_forklift: '',
-    fakeGround_props: '',
+    fakeGround: '',
+    props: '',
 }
