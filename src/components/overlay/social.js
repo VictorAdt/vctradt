@@ -1,5 +1,5 @@
-import { animated, useSpring, useSprings, useTrail } from "@react-spring/web";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { animated, useSpring, useSprings } from "@react-spring/web";
+import { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";

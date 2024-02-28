@@ -1,6 +1,5 @@
-import { useFrame } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGrid } from "../../../hooks/use-grid";
 import { isEven, randBetween } from "../../../utils/misc";
 import { theme } from "../../theme/theme";

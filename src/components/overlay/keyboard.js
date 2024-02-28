@@ -1,7 +1,5 @@
 import { Html, useKeyboardControls } from "@react-three/drei";
-import { useEffect } from "react";
 import styled from "styled-components";
-import { useGrid } from "../../hooks/use-grid";
 
 const KeyBoard = ({
     grid,

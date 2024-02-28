@@ -1,7 +1,6 @@
-import { OrthographicCamera, PerspectiveCamera } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useLayoutEffect, useRef } from "react";
-import { Vector3 } from "three";
+import { OrthographicCamera } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import { useEffect } from "react";
 
 export const Camera = () => {
     const camera = useThree((state) => state.camera)

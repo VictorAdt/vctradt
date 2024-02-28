@@ -1,6 +1,6 @@
 import { useThree } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Vector3 } from "three";
 
 const Frame = ({ color }) => {

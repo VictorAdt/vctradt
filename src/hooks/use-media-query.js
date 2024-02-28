@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { theme } from "../components/theme/theme";
 import { isInRange } from "../utils/misc";
 

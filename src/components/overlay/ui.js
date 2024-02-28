@@ -1,4 +1,3 @@
-import { useSpring } from "@react-spring/three";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 

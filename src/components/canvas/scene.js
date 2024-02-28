@@ -1,6 +1,6 @@
 import { usePageVisible } from "../../hooks/use-page-visible"
 import { Physics } from "@react-three/rapier"
-import { CameraControls, Html, KeyboardControls, OrbitControls } from "@react-three/drei"
+import { KeyboardControls } from "@react-three/drei"
 import { Rover } from "../rover/rover"
 import { World } from "./world/world"
 import { CONTROLS_MAP, RAPIER_UPDATE_PRIORITY } from "../../constants/constants"
@@ -9,9 +9,8 @@ import { Camera } from "./camera"
 import { TextGroup } from "../text/text"
 import Logo from "../text/logo"
 import { BrickAndBalls, Wall } from "./world/wall"
-import { EffectComposer, Noise, Pixelation, Scanline } from '@react-three/postprocessing'
+import { EffectComposer, Noise, Scanline } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
-import KeyBoard from "../overlay/keyboard"
 import { Social } from "../overlay/social"
 
 

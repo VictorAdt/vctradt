@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import './App.css';
 import { Scene } from './components/canvas/scene.js';
 import { theme } from './components/theme/theme.js';
-import { Controls } from './components/overlay/ui.js';
-import { Social } from './components/overlay/social.js';
 import AnimatedCursor from 'react-animated-cursor';
 
 

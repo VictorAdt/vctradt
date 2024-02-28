@@ -1,11 +1,9 @@
 import { RigidBody } from '@react-three/rapier'
-import React, { createRef, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useGrid } from '../../../hooks/use-grid'
-import { Wall } from './wall'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useThree } from '@react-three/fiber'
 import { useSpring, a } from '@react-spring/three'
 import { theme } from '../../theme/theme'
-import { AFTER_RAPIER_UPDATE } from '../../../constants/constants'
 
 
 export const World = () => {

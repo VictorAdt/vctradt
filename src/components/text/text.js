@@ -2,7 +2,6 @@ import { Html, Text3D } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import { createRef, useRef } from "react";
 import { useGrid } from "../../hooks/use-grid";
-import { Wall } from "../canvas/world/wall";
 import { theme } from "../theme/theme";
 
 
