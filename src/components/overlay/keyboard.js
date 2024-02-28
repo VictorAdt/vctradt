@@ -38,7 +38,9 @@ const KeyBoard = ({
                             onMouseDown={() => setInput.setMobileControlForward(true)}
                             onMouseUp={() => setInput.setMobileControlForward(false)}
                         >
-                            ↑
+                            <span style={{
+                                pointerEvents: 'none'
+                            }}>↑</span>
                         </Key>
                     </KeyRow>
                     <KeyRow >
@@ -46,19 +48,26 @@ const KeyBoard = ({
                             onMouseDown={() => setInput.setMobileControlLeft(true)}
                             onMouseUp={() => setInput.setMobileControlLeft(false)}
                         >
-                            ←
+                            <span style={{
+                                pointerEvents: 'none'
+                            }}>←</span>
                         </Key>
                         <Key active={back || mobileControlBack}
                             onMouseDown={() => setInput.setMobileControlBack(true)}
                             onMouseUp={() => setInput.setMobileControlBack(false)}
                         >
-                            ↓
+
+                            <span style={{
+                                pointerEvents: 'none'
+                            }}>↓</span>
                         </Key>
                         <Key active={right || mobileControlRight}
                             onMouseDown={() => setInput.setMobileControlRight(true)}
                             onMouseUp={() => setInput.setMobileControlRight(false)}
                         >
-                            →
+                            <span style={{
+                                pointerEvents: 'none'
+                            }}>→</span>
                         </Key>
                     </KeyRow>
                 </ArrowLayout>
