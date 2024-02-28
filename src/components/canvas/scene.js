@@ -12,6 +12,7 @@ import { BrickAndBalls, Wall } from "./world/wall"
 import { EffectComposer, Noise, Pixelation, Scanline } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import KeyBoard from "../overlay/keyboard"
+import { Social } from "../overlay/social"
 
 
 export const Scene = () => {
@@ -21,6 +22,7 @@ export const Scene = () => {
         <>
             <Canvas>
                 <Camera />
+                <Social />
                 <Physics
                     updatePriority={RAPIER_UPDATE_PRIORITY}
                     paused={!visible}
@@ -52,7 +54,7 @@ export const Scene = () => {
                         lineHeightModifier={-1}
                         marginTop={{ xs: 1, sm: 1, md: 0, lg: 0, xl: 0 }}
                         fontSize={{ xs: 65, sm: 65, md: 80, lg: 100, xl: 100 }}
-                        colStart={{ xs: 0, sm: 0, md: 1, lg: 1, xl: 2 }}
+                        colStart={{ xs: 0, sm: 1, md: 1, lg: 1, xl: 2 }}
                         rowStart={{ xs: 1, sm: 1, md: 1, lg: 2, xl: 2 }}
                     />
                     <Wall
@@ -61,7 +63,7 @@ export const Scene = () => {
                         rowStart={{ xs: 1, sm: 1, md: 1, lg: 2, xl: 2 }}
                         thickness={.4}
                         marginTop={{ xs: 6, sm: 6, md: 5.5, lg: 7.5, xl: 7.5 }}
-                        colEnd={{ xs: 2, sm: 2, md: 6, lg: 5, xl: 4 }}
+                        colEnd={{ xs: 2, sm: 3, md: 6, lg: 5, xl: 4 }}
                     />
                     <TextGroup
                         lineHeightModifier={6}
@@ -69,7 +71,7 @@ export const Scene = () => {
                         content={[`I'm a developer and`, 'a graphic designer.', 'Based in Lausanne - ', 'Switzerland']}
                         marginTop={{ xs: 4.5, sm: 4.5, md: 3.75, lg: 12, xl: 12 }}
                         fontSize={{ xs: 20, sm: 20, md: 20, lg: 20, xl: 20 }}
-                        colStart={{ xs: 0, sm: 0, md: 1, lg: 1, xl: 2 }}
+                        colStart={{ xs: 0, sm: 1, md: 1, lg: 1, xl: 2 }}
                         rowStart={{ xs: 2, sm: 2, md: 2, lg: 2, xl: 2 }}
                     />
                     <BrickAndBalls />

@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import { Html } from "@react-three/drei";
+import { useGrid } from "../../hooks/use-grid";
 
 const socials = [
     {
@@ -35,6 +37,7 @@ export const Social = () => {
         height: isClicked ? (socials.length * iconSizeN) + (socials.length * icongap) + (containerpadding * 4) : iconSizeN,
         config: springConfig,
     })
+    const { grid } = useGrid()
 
     const [springs, api] = useSprings(
         socials.length,
@@ -44,38 +47,60 @@ export const Social = () => {
         }),
     )
 
+    const socialsButtonsPos = {
+        xs: [0, 5],
+        sm: [0, 5],
+        md: [0, 5],
+        lg: [0, 5],
+        xl: [0, 5],
+    }
+
+
     const handleClick = () => {
         setIsClicked(!isClicked)
         api.start(i => ({
             y: !isClicked ? (i + 1) * -iconSizeN - icongap * (i + 1) : 0,
         }))
     }
+    if (grid)
+        return (
+            <Html
+                position={[grid.colsCoords[socialsButtonsPos[grid.breakpoint][0]].start, 2, grid.rowCoords[socialsButtonsPos[grid.breakpoint][1]].end]}
+            >
+                <FloatingButtonContainer
+                    style={{ height }}
+                >
+                    <FloatingButton onClick={handleClick}>
+                        {Array.from({ length: 3 }).map(() => <Dot />)}
+                    </FloatingButton>
+                    <ItemsContaier active={isClicked}>
+                        {springs.map((props, index) => {
+                            return (
+                                <FloatingButtonLink
+                                    style={props}
+                                    active={isClicked}
+                                    key={index}
+                                    href={socials[index].url}
+                                    rel="noopener noreferrer"
+                                    target={"_blank"}
+                                >
+                                    <FontAwesomeIcon icon={socials[index].icon} />
+                                </FloatingButtonLink>
+                            )
+                        })}
+                    </ItemsContaier>
+                </FloatingButtonContainer >¨
+            </Html>
+        );
+}
 
+export const LetsWork = () => {
     return (
-        <FloatingButtonContainer
-            style={{ height }}
-        >
-            <FloatingButton onClick={handleClick}>
-                {Array.from({ length: 3 }).map(() => <Dot />)}
-            </FloatingButton>
-            <ItemsContaier active={isClicked}>
-                {springs.map((props, index) => {
-                    return (
-                        <FloatingButtonLink
-                            style={props}
-                            active={isClicked}
-                            key={index}
-                            href={socials[index].url}
-                            rel="noopener noreferrer"
-                            target={"_blank"}
-                        >
-                            <FontAwesomeIcon icon={socials[index].icon} />
-                        </FloatingButtonLink>
-                    )
-                })}
-            </ItemsContaier>
-        </FloatingButtonContainer >
-    );
+        <FloatingButtonContainer>
+            <h2>Let's build something together</h2>
+            <p>Send me an email</p>
+        </FloatingButtonContainer>
+    )
 }
 
 const ItemsContaier = styled('div')`    

@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useGrid } from "../../../hooks/use-grid";
 import { isEven, randBetween } from "../../../utils/misc";
 import { theme } from "../../theme/theme";
@@ -9,6 +9,7 @@ import { theme } from "../../theme/theme";
 
 export const Brick = ({ position, color, dimensions }) => {
     const meshRef = useRef(null)
+    const rigidBodyRef = useRef(null)
     /*
     useFrame(() => {
         const scale = meshRef.current.parent.position.y
@@ -20,10 +21,10 @@ export const Brick = ({ position, color, dimensions }) => {
         meshRef.current.parent.scale.y = 1 + (2.95 + scale) / 20
     })*/
     return (
-        <RigidBody position={position} colliders="cuboid"
-            mass={0.001}
-            density={0.001} >
-            <mesh ref={meshRef} >
+        <RigidBody position={position} colliders="cuboid" ref={rigidBodyRef}
+            mass={0.01}
+            density={0.01} >
+            <mesh ref={meshRef} onClick={() => handleImpulse(rigidBodyRef)}>
                 <boxGeometry args={dimensions} />
                 <meshBasicMaterial color={theme.colors.elements} />
             </mesh>
@@ -42,7 +43,7 @@ export const BrickAndBalls = () => {
         sm: [[3, 1]],
         md: [[8, 3], [2, 5], [11, 2]],
         lg: [[6, 1], [8, 3], [2, 5], [11, 2],],
-        xl: [[6, 1], [8, 4], [2, 5], [11, 2], [11, 5]],
+        xl: [[6, 1], [8, 4], [2, 5], [11, 2]],
     }
     const bricksPositions = {
         xs: [],
@@ -83,15 +84,32 @@ export const BrickAndBalls = () => {
     }
 }
 
+const handleImpulse = (ref) => {
+    const randX = randBetween(-.4, 0.4)
+    const randY = randBetween(0, 0.1)
+    const randZ = randBetween(-.4, 0.4)
+    if (ref.current) {
+        ref.current.applyImpulse({ x: randX, y: randY, z: randZ }, true, true)
+        console.log('click');
+    }
+}
+
 const Ball = ({ position }) => {
+    const rigidBodyRef = useRef()
     const meshRef = useRef(null)
     const width = .7
+
+    useEffect(() => {
+        console.log(rigidBodyRef);
+    }, [rigidBodyRef])
+
+
     return (
-        <RigidBody position={position} colliders="ball"
+        <RigidBody ref={rigidBodyRef} position={position} colliders="ball"
             mass={0.01}
             density={0.01}
         >
-            <mesh ref={meshRef}>
+            <mesh ref={meshRef} onClick={() => handleImpulse(rigidBodyRef)}>
                 <sphereGeometry args={[width]} />
                 <meshBasicMaterial color={theme.colors.elements} />
             </mesh>

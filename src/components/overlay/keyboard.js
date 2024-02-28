@@ -16,13 +16,18 @@ const KeyBoard = ({
     const forward = useKeyboardControls((state) => state.forward)
     const back = useKeyboardControls((state) => state.back)
 
-    useEffect(() => {
+    const keyboardPos = {
+        xs: [3, 5],
+        sm: [3, 5],
+        md: [11, 5],
+        lg: [11, 5],
+        xl: [11, 5],
+    }
 
-    }, [left, right, forward, back])
-
+    console.log(grid);
     return (
         <Html
-            position={[grid.colsCoords[11].end, 2, grid.rowCoords[5].end]}
+            position={[grid.colsCoords[keyboardPos[grid.breakpoint][0]].end, 2, grid.rowCoords[keyboardPos[grid.breakpoint][1]].end]}
         >
             <StyledContainer >
 
@@ -77,7 +82,7 @@ const KeyRow = styled('div')`
     display: flex;
 `
 
-const Key = styled('div')`
+const Key = styled('button')`
     display: flex;
     align-items: center;
     justify-content: center;

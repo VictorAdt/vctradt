@@ -6,7 +6,7 @@ import { Spinner } from './spinner'
 export const Canvas = ({ children, rest }) => {
     return (
         <Suspense fallback={null}>
-            <R3FCanvas id="canvas" {...rest}>
+            <R3FCanvas id="canvas" {...rest} style={{ zIndex: 0 }}>
                 {children}
             </R3FCanvas>
         </Suspense>
