@@ -6,9 +6,9 @@ import AnimatedCursor from 'react-animated-cursor';
 
 
 function App() {
-
+	const windowHeight = window.innerHeight
 	return (
-		<AppContainer className="App">
+		<AppContainer className="App" height={windowHeight}>
 			<Scene />
 			<AnimatedCursor
 				innerStyle={{
@@ -52,7 +52,7 @@ function App() {
 export default App;
 
 const AppContainer = styled('div')`
-	height: 100vh;
+	height: ${props => props.height}px;
 	width: 100vw;
 	position: relative;
 	background-color: ${theme.colors.background}

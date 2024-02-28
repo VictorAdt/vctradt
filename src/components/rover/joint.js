@@ -12,7 +12,7 @@ export const AxleJoint = ({ body, wheel, bodyAnchor, wheelAnchor, rotationAxis, 
     const joint = useRevoluteJoint(body, wheel, [bodyAnchor, wheelAnchor, rotationAxis])
     const forwardPressed = useKeyboardControls((state) => state.forward)
     const backwardPressed = useKeyboardControls((state) => state.back)
-    console.log(mobileControlForward);
+
     useEffect(() => {
         let forward = .8 * DRIVEN_WHEEL_FORCE
         joint.current?.configureMotorVelocity(forward, DRIVEN_WHEEL_DAMPING)

@@ -65,7 +65,16 @@ export const Social = () => {
     if (grid)
         return (
             <Html
-                position={[grid.colsCoords[socialsButtonsPos[grid.breakpoint][0]].start, 2, grid.rowCoords[socialsButtonsPos[grid.breakpoint][1]].end]}
+                style={{
+                    position: "relative",
+                    left: `${-iconSizeN}px`,
+                    bottom: `${-iconSizeN / 2}px`,
+                }}
+                position={[
+                    grid.colsCoords[socialsButtonsPos[grid.breakpoint][0]].start,
+                    2,
+                    grid.rowCoords[socialsButtonsPos[grid.breakpoint][1]].end
+                ]}
             >
                 <FloatingButtonContainer
                     style={{ height }}

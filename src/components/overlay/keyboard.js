@@ -1,5 +1,12 @@
+import { faArrowAltCircleUp } from "@fortawesome/free-regular-svg-icons";
+import { faArrowDown, faArrowLeft, faArrowRight, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Html, useKeyboardControls } from "@react-three/drei";
 import styled from "styled-components";
+
+
+const containerHeight = 150
+const containerWidth = 200
 
 const KeyBoard = ({
     grid,
@@ -25,14 +32,19 @@ const KeyBoard = ({
     console.log(grid);
     return (
         <Html
-            position={[grid.colsCoords[keyboardPos[grid.breakpoint][0]].end, 2, grid.rowCoords[keyboardPos[grid.breakpoint][1]].end]}
+            style={{
+                position: 'relative',
+                bottom: `${-containerHeight / 4}px`,
+            }}
+            position={[
+                grid.colsCoords[keyboardPos[grid.breakpoint][0]].end + grid.colWidth / 3,
+                2,
+                grid.rowCoords[keyboardPos[grid.breakpoint][1]].end]}
         >
             <StyledContainer >
-
                 <ArrowLayout>
                     <KeyRow>
                         <Key
-                            onClick={() => console.log('reads')}
                             active={forward || mobileControlForward}
                             onPointerDown={() => setInput.setMobileControlForward(true)}
                             onPointerUp={() => setInput.setMobileControlForward(false)}
@@ -40,9 +52,11 @@ const KeyBoard = ({
                             onMouseUp={() => setInput.setMobileControlForward(false)}
                         >
                             <span style={{
+                                fontSize: '14px',
                                 pointerEvents: 'none',
                                 userSelect: 'none'
-                            }}>↑</span>
+                            }}><FontAwesomeIcon icon={faArrowUp} />
+                            </span>
                         </Key>
                     </KeyRow>
                     <KeyRow >
@@ -53,9 +67,10 @@ const KeyBoard = ({
                             onMouseUp={() => setInput.setMobileControlLeft(false)}
                         >
                             <span style={{
+                                fontSize: '14px',
                                 pointerEvents: 'none',
                                 userSelect: 'none'
-                            }}>←</span>
+                            }}><FontAwesomeIcon icon={faArrowLeft} /></span>
                         </Key>
                         <Key active={back || mobileControlBack}
                             onPointerDown={() => setInput.setMobileControlBack(true)}
@@ -64,9 +79,10 @@ const KeyBoard = ({
                             onMouseUp={() => setInput.setMobileControlBack(false)}
                         >
                             <span style={{
+                                fontSize: '14px',
                                 pointerEvents: 'none',
                                 userSelect: 'none'
-                            }}>↓</span>
+                            }}><FontAwesomeIcon icon={faArrowDown} /></span>
                         </Key>
                         <Key active={right || mobileControlRight}
                             onPointerDown={() => setInput.setMobileControlRight(true)}
@@ -75,9 +91,10 @@ const KeyBoard = ({
                             onMouseUp={() => setInput.setMobileControlRight(false)}
                         >
                             <span style={{
+                                fontSize: '14px',
                                 pointerEvents: 'none',
                                 userSelect: 'none'
-                            }}>→</span>
+                            }}><FontAwesomeIcon icon={faArrowRight} /></span>
                         </Key>
                     </KeyRow>
                 </ArrowLayout>
@@ -126,13 +143,18 @@ const Key = styled('button')`
         background-color: #0B0B0B;
         opacity: .8;
     }
+    @media (max-width: 844px) {
+        height: 60px;
+        width: 60px;
+    }
 `
 
 const StyledContainer = styled('div')`
+    height: ${containerHeight}px;
+    width: ${containerWidth}px;
     position: absolute;
     bottom: 40px;
     right: 40px;
-    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,5 +171,13 @@ const StyledContainer = styled('div')`
         opacity: .1;
         display: block;
         background-color: #000;
+    }
+    @media (max-width: 844px) {
+        border: 0;
+        height: ${containerHeight - 20}px;
+        backdrop-filter: none;
+        &:after{
+            display: none;
+        }
     }
 `

@@ -3,6 +3,7 @@ import { RigidBody } from "@react-three/rapier";
 import { createRef, useRef } from "react";
 import { useGrid } from "../../hooks/use-grid";
 import { theme } from "../theme/theme";
+import { isMobile } from 'react-device-detect';
 
 
 export const TextGroup = ({
@@ -104,11 +105,11 @@ export const Text = ({
                     }}
                     position={[grid.colsCoords[colStart[grid.breakpoint]].start, 0.5, positionZ]}
                 >
-                    <h1 style={{
+                    <p style={{
                         color: theme.colors.text,
                         fontSize: `${fontSize[grid.breakpoint]}px`,
                         letterSpacing: `${fontSize[grid.breakpoint] / 5.9}px`,
-                        lineHeight: 0.75,
+                        lineHeight: isMobile ? .94 : 0.75,
                         fontWeight: 'lighter',
                         fontFamily: `TTmono-${fontStyle}`
                     }}>
@@ -119,7 +120,7 @@ export const Text = ({
                                 </span>
                             )
                         })}
-                    </h1>
+                    </p>
                 </Html >
             </>
         )
