@@ -40,7 +40,8 @@ const KeyBoard = ({
                             onMouseUp={() => setInput.setMobileControlForward(false)}
                         >
                             <span style={{
-                                pointerEvents: 'none'
+                                pointerEvents: 'none',
+                                serSelect: 'none'
                             }}>↑</span>
                         </Key>
                     </KeyRow>
@@ -52,7 +53,8 @@ const KeyBoard = ({
                             onMouseUp={() => setInput.setMobileControlLeft(false)}
                         >
                             <span style={{
-                                pointerEvents: 'none'
+                                pointerEvents: 'none',
+                                serSelect: 'none'
                             }}>←</span>
                         </Key>
                         <Key active={back || mobileControlBack}
@@ -62,7 +64,8 @@ const KeyBoard = ({
                             onMouseUp={() => setInput.setMobileControlBack(false)}
                         >
                             <span style={{
-                                pointerEvents: 'none'
+                                pointerEvents: 'none',
+                                serSelect: 'none'
                             }}>↓</span>
                         </Key>
                         <Key active={right || mobileControlRight}
@@ -72,7 +75,8 @@ const KeyBoard = ({
                             onMouseUp={() => setInput.setMobileControlRight(false)}
                         >
                             <span style={{
-                                pointerEvents: 'none'
+                                pointerEvents: 'none',
+                                userSelect: 'none'
                             }}>→</span>
                         </Key>
                     </KeyRow>
