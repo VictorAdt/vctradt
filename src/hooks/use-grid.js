@@ -68,11 +68,13 @@ export const useGrid = () => {
 
     useEffect(() => {
         handleResize()
+        // eslint-disable-next-line
     }, [z])
 
     useEffect(() => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
+        // eslint-disable-next-line
     }, []);
 
     return { grid }
