@@ -41,7 +41,7 @@ const KeyBoard = ({
                         >
                             <span style={{
                                 pointerEvents: 'none',
-                                serSelect: 'none'
+                                userSelect: 'none'
                             }}>↑</span>
                         </Key>
                     </KeyRow>
@@ -54,7 +54,7 @@ const KeyBoard = ({
                         >
                             <span style={{
                                 pointerEvents: 'none',
-                                serSelect: 'none'
+                                userSelect: 'none'
                             }}>←</span>
                         </Key>
                         <Key active={back || mobileControlBack}
@@ -65,7 +65,7 @@ const KeyBoard = ({
                         >
                             <span style={{
                                 pointerEvents: 'none',
-                                serSelect: 'none'
+                                userSelect: 'none'
                             }}>↓</span>
                         </Key>
                         <Key active={right || mobileControlRight}
