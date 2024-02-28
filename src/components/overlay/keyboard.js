@@ -35,6 +35,7 @@ const KeyBoard = ({
                             onClick={() => console.log('reads')}
                             active={forward || mobileControlForward}
                             onPointerDown={() => setInput.setMobileControlForward(true)}
+                            onPointerUp={() => setInput.setMobileControlForward(false)}
                             onMouseDown={() => setInput.setMobileControlForward(true)}
                             onMouseUp={() => setInput.setMobileControlForward(false)}
                         >
@@ -45,6 +46,8 @@ const KeyBoard = ({
                     </KeyRow>
                     <KeyRow >
                         <Key active={left || mobileControlLeft}
+                            onPointerDown={() => setInput.setMobileControlLeft(true)}
+                            onPointerUp={() => setInput.setMobileControlLeft(false)}
                             onMouseDown={() => setInput.setMobileControlLeft(true)}
                             onMouseUp={() => setInput.setMobileControlLeft(false)}
                         >
@@ -53,15 +56,18 @@ const KeyBoard = ({
                             }}>←</span>
                         </Key>
                         <Key active={back || mobileControlBack}
+                            onPointerDown={() => setInput.setMobileControlBack(true)}
+                            onPointerUp={() => setInput.setMobileControlBack(false)}
                             onMouseDown={() => setInput.setMobileControlBack(true)}
                             onMouseUp={() => setInput.setMobileControlBack(false)}
                         >
-
                             <span style={{
                                 pointerEvents: 'none'
                             }}>↓</span>
                         </Key>
                         <Key active={right || mobileControlRight}
+                            onPointerDown={() => setInput.setMobileControlRight(true)}
+                            onPointerUp={() => setInput.setMobileControlRight(false)}
                             onMouseDown={() => setInput.setMobileControlRight(true)}
                             onMouseUp={() => setInput.setMobileControlRight(false)}
                         >
