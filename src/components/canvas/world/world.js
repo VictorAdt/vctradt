@@ -1,16 +1,13 @@
 import { RigidBody } from '@react-three/rapier'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useGrid } from '../../../hooks/use-grid'
-import { useThree } from '@react-three/fiber'
-import { useSpring, a } from '@react-spring/three'
+import { a } from '@react-spring/three'
 import { theme } from '../../theme/theme'
 
 
 export const World = () => {
     const planeRef = useRef()
     const { grid } = useGrid()
-    const { pointer, viewport } = useThree()
-    const pointLightRef = useRef()
 
     if (grid) {
         return (
@@ -56,7 +53,7 @@ export const World = () => {
 
 
 
-const Row = ({ grid, index }) => {
+/* const Row = ({ grid, index }) => {
     const [hovered, setHovered] = useState(false)
 
     const { color } = useSpring({
@@ -71,19 +68,12 @@ const Row = ({ grid, index }) => {
             <a.meshStandardMaterial color={theme.colors.col.base} opacity={.4} transparent />
         </a.mesh>
     )
-}
+} */
 
 const Col = ({ grid, index }) => {
-    const [hovered, setHovered] = useState(false)
-
-    const { color } = useSpring({
-        color: hovered ? theme.colors.col.hover : theme.colors.col.base,
-    })
 
     return (
-        <a.mesh position={[grid.colsCoords[index].middle, -.12, 0]} rotation={[- Math.PI / 2, 0, 0]}
-            onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
-            onPointerOut={(e) => setHovered(false)} >
+        <a.mesh position={[grid.colsCoords[index].middle, -.12, 0]} rotation={[- Math.PI / 2, 0, 0]} >
             <planeGeometry args={[grid.colWidth, 200]} />
             <a.meshStandardMaterial color={theme.colors.col.base} opacity={.3} transparent />
         </a.mesh>

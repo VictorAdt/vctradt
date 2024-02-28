@@ -64,13 +64,16 @@ export const useGrid = () => {
         }
     }
 
+    const z = vec3.set(-1, 1, 0).unproject(camera).z
+
     useEffect(() => {
         handleResize()
-    }, [vec3.set(-1, 1, 0).unproject(camera).z])
+    }, [z])
 
     useEffect(() => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
     return { grid }
 }

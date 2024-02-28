@@ -24,18 +24,15 @@ const getBreakpoint = (width) => {
     switch (true) {
         case isInRange(0, breakpoints.xs, width):
             return 'xs'
-            break
         case isInRange(breakpoints.xs, breakpoints.sm, width):
             return 'sm'
-            break
         case isInRange(breakpoints.sm, breakpoints.md, width):
             return 'md'
-            break
         case isInRange(breakpoints.md, breakpoints.lg, width):
             return 'lg'
-            break
         case isInRange(breakpoints.lg, Infinity, width):
             return 'xl'
+        default:
             break
     }
 }

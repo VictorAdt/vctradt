@@ -20,7 +20,7 @@ export const AxleJoint = ({ body, wheel, bodyAnchor, wheelAnchor, rotationAxis, 
             joint.current?.configureMotorVelocity(0, 80)
         }, 1500)
 
-    }, [])
+    }, [joint])
 
     useEffect(() => {
         if (!isDriven) return
@@ -32,7 +32,7 @@ export const AxleJoint = ({ body, wheel, bodyAnchor, wheelAnchor, rotationAxis, 
             wheel.current?.wakeUp()
         }
         joint.current?.configureMotorVelocity(forward, DRIVEN_WHEEL_DAMPING)
-    }, [forwardPressed, backwardPressed, mobileControlForward, mobileControlBack])
+    }, [forwardPressed, backwardPressed, mobileControlForward, mobileControlBack, isDriven, joint, wheel])
 
     return null
 }
@@ -46,11 +46,11 @@ export const SteeredJoint = ({ body, wheel, bodyAnchor, wheelAnchor, rotationAxi
     useEffect(() => {
         let targetPos = -0.2
         joint.current?.configureMotorPosition(targetPos, AXLE_TO_CHASSIS_JOINT_STIFFNESS, AXLE_TO_CHASSIS_JOINT_DAMPING)
-    }, [])
+    }, [joint])
 
     useEffect(() => {
         joint.current?.configureMotorPosition(targetPos, AXLE_TO_CHASSIS_JOINT_STIFFNESS, AXLE_TO_CHASSIS_JOINT_DAMPING)
-    }, [left, right, mobileControlLeft, mobileControlRight])
+    }, [left, right, mobileControlLeft, mobileControlRight, joint, targetPos])
 
     return null
 }

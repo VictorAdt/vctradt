@@ -1,9 +1,6 @@
-import { OrbitControls, useGLTF, useKeyboardControls } from "@react-three/drei";
-import { CuboidCollider, RigidBody, useFixedJoint, usePrismaticJoint } from "@react-three/rapier";
+import { useGLTF, useKeyboardControls } from "@react-three/drei";
+import { RigidBody, usePrismaticJoint } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
-import { FixedJoint } from "./joint";
-import { useFrame } from "@react-three/fiber";
-import { isInRange } from "../../utils/misc";
 
 
 export const Lift = ({ body, ref }) => {
@@ -36,7 +33,6 @@ export const Lift = ({ body, ref }) => {
     useEffect(() => {
         joint.current.setLimits(min, max)
         joint.current.configureMotorVelocity(200, 1)
-        let loop
         if (liftUpPressed) {
             setTargetPos(max)
         }
@@ -46,9 +42,7 @@ export const Lift = ({ body, ref }) => {
         // joint.current.setLimits(targetPos, targetPos);
         joint.current.configureMotorPosition(targetPos, 300, .1);
         // IF HEIGHT == TARGET POS : LOCK
-    }, [liftUpPressed, liftDownPressed, joint])
-
-
+    }, [liftUpPressed, liftDownPressed, joint, min, targetPos])
 
     return (
         <>
