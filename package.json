@@ -1,5 +1,5 @@
 {
-  "name": "rover",
+  "name": "vctradt",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "react-animated-cursor": "^2.11.2",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.0",
     "three": "^0.160.1",

@@ -10,6 +10,7 @@ export const theme = {
             hover: '#141212',
         },
         text: 'white',
+        color: '#333',
         elements: 'white'
     },
     breakpoints: {

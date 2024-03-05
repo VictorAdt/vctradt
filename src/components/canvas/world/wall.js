@@ -1,7 +1,7 @@
 import { RigidBody } from "@react-three/rapier";
 import { useEffect, useRef } from "react";
 import { useGrid } from "../../../hooks/use-grid";
-import { isEven, randBetween } from "../../../utils/misc";
+import { isEven } from "../../../utils/misc";
 import { theme } from "../../theme/theme";
 
 
@@ -23,7 +23,7 @@ export const Brick = ({ position, color, dimensions }) => {
         <RigidBody position={position} colliders="cuboid" ref={rigidBodyRef}
             mass={0.01}
             density={0.01} >
-            <mesh ref={meshRef} onClick={() => handleImpulse(rigidBodyRef)}>
+            <mesh ref={meshRef}>
                 <boxGeometry args={dimensions} />
                 <meshBasicMaterial color={theme.colors.elements} />
             </mesh>
@@ -39,10 +39,10 @@ export const BrickAndBalls = () => {
 
     const spheresPositions = {
         xs: [],
-        sm: [[3, 1]],
+        sm: [],
         md: [[8, 3], [2, 5], [11, 2]],
-        lg: [[6, 1], [8, 3], [2, 5], [11, 2],],
-        xl: [[6, 1], [8, 4], [2, 5], [11, 2]],
+        lg: [[6, 1], [8, 3], [11, 2],],
+        xl: [[6, 1], [8, 4], [11, 2]],
     }
     const bricksPositions = {
         xs: [],
@@ -83,7 +83,7 @@ export const BrickAndBalls = () => {
     }
 }
 
-const handleImpulse = (ref) => {
+/*const handleImpulse = (ref) => {
     const randX = randBetween(-.4, 0.4)
     const randY = randBetween(0, 0.1)
     const randZ = randBetween(-.4, 0.4)
@@ -91,7 +91,7 @@ const handleImpulse = (ref) => {
         ref.current.applyImpulse({ x: randX, y: randY, z: randZ }, true, true)
         console.log('click');
     }
-}
+}*/
 
 const Ball = ({ position }) => {
     const rigidBodyRef = useRef()
@@ -108,7 +108,7 @@ const Ball = ({ position }) => {
             mass={0.01}
             density={0.01}
         >
-            <mesh ref={meshRef} onClick={() => handleImpulse(rigidBodyRef)}>
+            <mesh ref={meshRef}>
                 <sphereGeometry args={[width]} />
                 <meshBasicMaterial color={theme.colors.elements} />
             </mesh>

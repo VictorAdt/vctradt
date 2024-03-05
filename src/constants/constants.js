@@ -30,3 +30,8 @@ export const collisionGroups = {
     fakeGround: '',
     props: '',
 }
+
+export const meta = {
+    title: 'Victor Audétat',
+    description: `Hello ! I'm a developer and a graphic designer. Based in Lausanne - Switzerland`,
+}

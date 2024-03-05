@@ -4,6 +4,7 @@ import { createRef, useRef } from "react";
 import { useGrid } from "../../hooks/use-grid";
 import { theme } from "../theme/theme";
 import { isMobile } from 'react-device-detect';
+import styled from "styled-components";
 
 
 export const TextGroup = ({
@@ -16,6 +17,7 @@ export const TextGroup = ({
     lineHeightModifier,
     isVerticalyCentered,
     height,
+    tag
 }) => {
     const { grid } = useGrid()
     const groupRef = useRef()
@@ -28,6 +30,7 @@ export const TextGroup = ({
             <group ref={groupRef}>
                 {content.map((element, index) =>
                     <Text
+                        tag={tag}
                         key={index}
                         height={height}
                         fontStyle={style}
@@ -52,7 +55,8 @@ export const Text = ({
     positionZ,
     height,
     rowStart,
-    grid
+    grid,
+    tag
 }) => {
     const splitText = content.split('')
     const htlmTextRef = useRef(splitText.map(() => createRef()))
@@ -60,6 +64,8 @@ export const Text = ({
     const dTextRef = useRef(splitText.map(() => createRef()))
     const groupRef = useRef()
     const charHeight = height || .5
+    const Tag = styled(tag ? tag : 'p')``
+
     if (grid) {
         const x = grid.colsCoords[colStart[grid.breakpoint]]
         return (
@@ -105,7 +111,7 @@ export const Text = ({
                     }}
                     position={[grid.colsCoords[colStart[grid.breakpoint]].start, 0.5, positionZ]}
                 >
-                    <p style={{
+                    <Tag style={{
                         color: theme.colors.text,
                         fontSize: `${fontSize[grid.breakpoint]}px`,
                         letterSpacing: `${fontSize[grid.breakpoint] / 5.9}px`,
@@ -120,7 +126,7 @@ export const Text = ({
                                 </span>
                             )
                         })}
-                    </p>
+                    </Tag>
                 </Html >
             </>
         )

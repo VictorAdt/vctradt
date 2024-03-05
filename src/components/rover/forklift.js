@@ -7,8 +7,7 @@ import { isEven } from '../../utils/misc'
 import { useGrid } from '../../hooks/use-grid'
 import KeyBoard from '../overlay/keyboard'
 
-export const Rover = () => {
-
+export const Forklift = () => {
     const [mobileControlForward, setMobileControlForward] = useState(false)
     const [mobileControlBack, setMobileControlBack] = useState(false)
     const [mobileControlLeft, setMobileControlLeft] = useState(false)
@@ -56,7 +55,11 @@ export const Rover = () => {
     if (grid) {
         return (
             <>
-                <group position={[grid.colsCoords[grid.colsCoords.length - 1].end + grid.gutterSize * 2 + 1, 2, grid.rowCoords[grid.rowCoords.length - 2].middle]} rotation={[0, -Math.PI / 4 + .6, 0]} >
+                <group position={[
+                    grid.colsCoords[grid.colsCoords.length - 1].end + grid.gutterSize * 2 + 1,
+                    2,
+                    grid.rowCoords[grid.rowCoords.length - 2].start]}
+                    rotation={[0, -Math.PI / 4 + .6, 0]} >
                     {/* chassis */}
                     <RigidBody ref={chassisRef} colliders="hull" mass={0.001} name='rover-chasis' density={.001}>
                         {<primitive object={chassisModel.scene} position={[-.1, -.2, 0]} rotation={[0, -Math.PI, 0]} scale={[.25, .25, .25]} />}
@@ -74,11 +77,22 @@ export const Rover = () => {
                     {wheels.map((wheel, i) => (
                         <React.Fragment key={i}>
                             {/* axle */}
-                            <RigidBody ref={axleRefs.current[i]} position={wheel.axlePosition} colliders="cuboid" name='rover-chasis' mass={.1} density={4} collisionGroups={0b0000_0000_0000_0001}
-                                solverGroups={0b0000_0000_0000_0001}>
-                                <mesh castShadow receiveShadow position={[0, 0, isEven(i) ? -.15 : .15]}>
+                            <RigidBody
+                                ref={axleRefs.current[i]}
+                                position={wheel.axlePosition}
+                                colliders="cuboid"
+                                name='rover-chasis'
+                                mass={.1}
+                                density={4}
+                                collisionGroups={0b0000_0000_0000_0001}
+                                solverGroups={0b0000_0000_0000_0001}
+                            >
+                                <mesh
+                                    castShadow
+                                    receiveShadow
+                                    position={[0, 0, isEven(i) ? -.15 : .15]}>
                                     <boxGeometry args={[0.1, 0.1, 0.2]} />
-                                    <meshBasicMaterial color="#c43535" />
+                                    <meshBasicMaterial color="orange" />
                                 </mesh>
                             </RigidBody>
                             {/* wheel */}
@@ -121,6 +135,7 @@ export const Rover = () => {
                                 wheelAnchor={[0, 0, 0]}
                                 rotationAxis={[0, 0, 1]}
                                 isDriven={wheel.isDriven}
+                                breakpoint={grid.breakpoint}
                             />
 
                         </React.Fragment>

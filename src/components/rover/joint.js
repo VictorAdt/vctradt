@@ -8,20 +8,42 @@ export const FixedJoint = ({ body, wheel, body1Anchor, body1LocalFrame, body2Anc
     return null
 }
 
-export const AxleJoint = ({ body, wheel, bodyAnchor, wheelAnchor, rotationAxis, isDriven, mobileControlForward, mobileControlBack }) => {
+export const AxleJoint = ({
+    body,
+    wheel,
+    bodyAnchor,
+    wheelAnchor,
+    rotationAxis,
+    isDriven,
+    mobileControlForward,
+    mobileControlBack,
+    breakpoint
+}) => {
     const joint = useRevoluteJoint(body, wheel, [bodyAnchor, wheelAnchor, rotationAxis])
     const forwardPressed = useKeyboardControls((state) => state.forward)
     const backwardPressed = useKeyboardControls((state) => state.back)
-
+    const initBreak = {
+        xs: 300,
+        sm: 300,
+        md: 100,
+        lg: 80,
+        xl: 80,
+    }
+    const initForce = {
+        xs: .4,
+        sm: .4,
+        md: .6,
+        lg: .8,
+        xl: .8,
+    }
     useEffect(() => {
         let forward = .8 * DRIVEN_WHEEL_FORCE
         joint.current?.configureMotorVelocity(forward, DRIVEN_WHEEL_DAMPING)
         setTimeout(() => {
-            joint.current?.configureMotorVelocity(0, 80)
-        }, 1500)
+            joint.current?.configureMotorVelocity(0, initBreak[breakpoint])
+        }, 1300)
 
     }, [joint])
-
     useEffect(() => {
         if (!isDriven) return
         let forward = 0
@@ -33,7 +55,6 @@ export const AxleJoint = ({ body, wheel, bodyAnchor, wheelAnchor, rotationAxis, 
         }
         joint.current?.configureMotorVelocity(forward, DRIVEN_WHEEL_DAMPING)
     }, [forwardPressed, backwardPressed, mobileControlForward, mobileControlBack, isDriven, joint, wheel])
-
     return null
 }
 
@@ -42,15 +63,12 @@ export const SteeredJoint = ({ body, wheel, bodyAnchor, wheelAnchor, rotationAxi
     const left = useKeyboardControls((state) => state.left)
     const right = useKeyboardControls((state) => state.right)
     const targetPos = left || mobileControlLeft ? 0.2 : right || mobileControlRight ? -0.2 : 0
-
     useEffect(() => {
         let targetPos = -0.2
         joint.current?.configureMotorPosition(targetPos, AXLE_TO_CHASSIS_JOINT_STIFFNESS, AXLE_TO_CHASSIS_JOINT_DAMPING)
     }, [joint])
-
     useEffect(() => {
         joint.current?.configureMotorPosition(targetPos, AXLE_TO_CHASSIS_JOINT_STIFFNESS, AXLE_TO_CHASSIS_JOINT_DAMPING)
     }, [left, right, mobileControlLeft, mobileControlRight, joint, targetPos])
-
     return null
 }

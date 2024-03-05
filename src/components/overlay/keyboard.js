@@ -1,9 +1,7 @@
-import { faArrowAltCircleUp } from "@fortawesome/free-regular-svg-icons";
 import { faArrowDown, faArrowLeft, faArrowRight, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Html, useKeyboardControls } from "@react-three/drei";
 import styled from "styled-components";
-
 
 const containerHeight = 150
 const containerWidth = 200
@@ -51,12 +49,9 @@ const KeyBoard = ({
                             onMouseDown={() => setInput.setMobileControlForward(true)}
                             onMouseUp={() => setInput.setMobileControlForward(false)}
                         >
-                            <span style={{
-                                fontSize: '14px',
-                                pointerEvents: 'none',
-                                userSelect: 'none'
-                            }}><FontAwesomeIcon icon={faArrowUp} />
-                            </span>
+                            <IconContainer>
+                                <FontAwesomeIcon icon={faArrowUp} />
+                            </IconContainer>
                         </Key>
                     </KeyRow>
                     <KeyRow >
@@ -66,11 +61,9 @@ const KeyBoard = ({
                             onMouseDown={() => setInput.setMobileControlLeft(true)}
                             onMouseUp={() => setInput.setMobileControlLeft(false)}
                         >
-                            <span style={{
-                                fontSize: '14px',
-                                pointerEvents: 'none',
-                                userSelect: 'none'
-                            }}><FontAwesomeIcon icon={faArrowLeft} /></span>
+                            <IconContainer>
+                                <FontAwesomeIcon icon={faArrowLeft} />
+                            </IconContainer>
                         </Key>
                         <Key active={back || mobileControlBack}
                             onPointerDown={() => setInput.setMobileControlBack(true)}
@@ -78,11 +71,9 @@ const KeyBoard = ({
                             onMouseDown={() => setInput.setMobileControlBack(true)}
                             onMouseUp={() => setInput.setMobileControlBack(false)}
                         >
-                            <span style={{
-                                fontSize: '14px',
-                                pointerEvents: 'none',
-                                userSelect: 'none'
-                            }}><FontAwesomeIcon icon={faArrowDown} /></span>
+                            <IconContainer>
+                                <FontAwesomeIcon icon={faArrowDown} />
+                            </IconContainer>
                         </Key>
                         <Key active={right || mobileControlRight}
                             onPointerDown={() => setInput.setMobileControlRight(true)}
@@ -90,11 +81,9 @@ const KeyBoard = ({
                             onMouseDown={() => setInput.setMobileControlRight(true)}
                             onMouseUp={() => setInput.setMobileControlRight(false)}
                         >
-                            <span style={{
-                                fontSize: '14px',
-                                pointerEvents: 'none',
-                                userSelect: 'none'
-                            }}><FontAwesomeIcon icon={faArrowRight} /></span>
+                            <IconContainer>
+                                <FontAwesomeIcon icon={faArrowRight} />
+                            </IconContainer>
                         </Key>
                     </KeyRow>
                 </ArrowLayout>
@@ -116,6 +105,16 @@ const KeyRow = styled('div')`
     display: flex;
 `
 
+const IconContainer = styled('div')`
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 14px;
+`
+
 const Key = styled('button')`
     user-select: none;
     display: flex;
@@ -123,7 +122,7 @@ const Key = styled('button')`
     justify-content: center;
     color: #e3e3e3;
     border: 1px solid #333;
-    background-color: ${props => props.active ? 'blue' : '#1A1A15'};
+    background-color: ${props => props.active ? '#0B0B0B' : '#1A1A15'};
     border-radius: 10px;
     font-weight: bolder;
     position: relative;

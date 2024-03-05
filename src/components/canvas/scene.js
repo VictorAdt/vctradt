@@ -1,7 +1,7 @@
 import { usePageVisible } from "../../hooks/use-page-visible"
 import { Physics } from "@react-three/rapier"
 import { KeyboardControls } from "@react-three/drei"
-import { Rover } from "../rover/rover"
+import { Forklift } from "../rover/forklift"
 import { World } from "./world/world"
 import { CONTROLS_MAP, RAPIER_UPDATE_PRIORITY } from "../../constants/constants"
 import { Canvas } from "./canvas"
@@ -16,7 +16,6 @@ import { Social } from "../overlay/social"
 
 export const Scene = () => {
     const visible = usePageVisible()
-
     return (
         <>
             <Canvas>
@@ -30,7 +29,7 @@ export const Scene = () => {
                     maxVelocityIterations={100}
                 >
                     <KeyboardControls map={CONTROLS_MAP}>
-                        <Rover />
+                        <Forklift />
                     </KeyboardControls>
                     <World />
                     <Logo />
@@ -48,7 +47,8 @@ export const Scene = () => {
                         colEnd={{ xs: 0, sm: 0, md: 11, lg: 9, xl: 9 }}
                     />
                     <TextGroup
-                        content={['HEY', 'HELLO']}
+                        content={['HEY,', `WELCOME`]}
+                        tag='h1'
                         height={.8}
                         lineHeightModifier={-1}
                         marginTop={{ xs: 1, sm: 1, md: 0, lg: 0, xl: 0 }}
@@ -65,11 +65,12 @@ export const Scene = () => {
                         colEnd={{ xs: 2, sm: 3, md: 6, lg: 5, xl: 4 }}
                     />
                     <TextGroup
+                        tag='h2'
                         lineHeightModifier={6}
                         fontStyle='normal'
-                        content={[`I'm a developer and`, 'a graphic designer.', 'Based in Lausanne - ', 'Switzerland']}
+                        content={[`I'm Victor, a developer`, 'and a graphic designer.', 'Based in Lausanne - ', 'Switzerland', '', `Let's build`, 'something together']}
                         marginTop={{ xs: 4.5, sm: 4.5, md: 3.75, lg: 12, xl: 12 }}
-                        fontSize={{ xs: 20, sm: 20, md: 20, lg: 20, xl: 20 }}
+                        fontSize={{ xs: 16, sm: 16, md: 20, lg: 20, xl: 20 }}
                         colStart={{ xs: 0, sm: 0, md: 1, lg: 1, xl: 2 }}
                         rowStart={{ xs: 2, sm: 2, md: 2, lg: 2, xl: 2 }}
                     />
