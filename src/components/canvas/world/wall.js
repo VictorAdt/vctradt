@@ -89,7 +89,6 @@ export const BrickAndBalls = () => {
     const randZ = randBetween(-.4, 0.4)
     if (ref.current) {
         ref.current.applyImpulse({ x: randX, y: randY, z: randZ }, true, true)
-        console.log('click');
     }
 }*/
 
@@ -97,11 +96,6 @@ const Ball = ({ position }) => {
     const rigidBodyRef = useRef()
     const meshRef = useRef(null)
     const width = .7
-
-    useEffect(() => {
-        console.log(rigidBodyRef);
-    }, [rigidBodyRef])
-
 
     return (
         <RigidBody ref={rigidBodyRef} position={position} colliders="ball"

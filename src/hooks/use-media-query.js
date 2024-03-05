@@ -8,7 +8,6 @@ export const useMediaQuery = () => {
     const handleResize = () => {
         const { innerWidth, innerHeight } = window
         const breakpoint = getBreakpoint(innerWidth)
-        console.log(breakpoint);
         setViewport({ width: innerWidth, height: innerHeight, breakpoint })
     }
     useEffect(() => {

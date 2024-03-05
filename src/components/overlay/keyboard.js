@@ -27,7 +27,6 @@ const KeyBoard = ({
         xl: [11, 5],
     }
 
-    console.log(grid);
     return (
         <Html
             style={{
