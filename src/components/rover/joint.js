@@ -29,20 +29,13 @@ export const AxleJoint = ({
         lg: 80,
         xl: 80,
     }
-    const initForce = {
-        xs: .4,
-        sm: .4,
-        md: .6,
-        lg: .8,
-        xl: .8,
-    }
     useEffect(() => {
         let forward = .8 * DRIVEN_WHEEL_FORCE
         joint.current?.configureMotorVelocity(forward, DRIVEN_WHEEL_DAMPING)
         setTimeout(() => {
             joint.current?.configureMotorVelocity(0, initBreak[breakpoint])
         }, 1300)
-
+        // eslint-disable-next-line
     }, [joint])
     useEffect(() => {
         if (!isDriven) return
@@ -54,6 +47,7 @@ export const AxleJoint = ({
             wheel.current?.wakeUp()
         }
         joint.current?.configureMotorVelocity(forward, DRIVEN_WHEEL_DAMPING)
+        // eslint-disable-next-line
     }, [forwardPressed, backwardPressed, mobileControlForward, mobileControlBack, isDriven, joint, wheel])
     return null
 }
