@@ -2,7 +2,7 @@ import AnimatedCursor from "react-animated-cursor";
 import { isMobile } from "react-device-detect";
 
 export const Cursor = () => {
-    return (isMobile &&
+    return (!isMobile &&
         <AnimatedCursor
             innerStyle={{
                 zIndex: 99,
