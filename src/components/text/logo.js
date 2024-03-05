@@ -6,7 +6,6 @@ const Logo = () => {
     if (grid) {
         const { colWidth } = grid
         const rowStart = { xs: 0, sm: 0, md: 0, lg: 0, xl: 0 }
-
         const content = ['v c t', 'r - a', 'd t .']
         const z = grid.rowCoords[rowStart[grid.breakpoint]]
         const lineHeight = 6

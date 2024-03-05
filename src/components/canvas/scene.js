@@ -47,8 +47,8 @@ export const Scene = () => {
                         colEnd={{ xs: 0, sm: 0, md: 11, lg: 9, xl: 9 }}
                     />
                     <TextGroup
-                        content={['HEY,', `WELCOME`]}
-                        tag='h1'
+                        title={true}
+                        content={['HEY', `WELCOME`]}
                         height={.8}
                         lineHeightModifier={-1}
                         marginTop={{ xs: 1, sm: 1, md: 0, lg: 0, xl: 0 }}
@@ -65,7 +65,6 @@ export const Scene = () => {
                         colEnd={{ xs: 2, sm: 3, md: 6, lg: 5, xl: 4 }}
                     />
                     <TextGroup
-                        tag='h2'
                         lineHeightModifier={6}
                         fontStyle='normal'
                         content={[`I'm Victor, a developer`, 'and a graphic designer.', 'Based in Lausanne - ', 'Switzerland', '', `Let's build`, 'something together']}

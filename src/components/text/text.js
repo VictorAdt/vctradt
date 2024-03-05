@@ -6,7 +6,6 @@ import { theme } from "../theme/theme";
 import { isMobile } from 'react-device-detect';
 import styled from "styled-components";
 
-
 export const TextGroup = ({
     fontStyle,
     marginTop,
@@ -17,11 +16,10 @@ export const TextGroup = ({
     lineHeightModifier,
     isVerticalyCentered,
     height,
-    tag
+    title
 }) => {
     const { grid } = useGrid()
     const groupRef = useRef()
-
     if (grid) {
         const z = grid.rowCoords[rowStart[grid.breakpoint]]
         const lineHeight = lineHeightModifier || 0
@@ -30,7 +28,7 @@ export const TextGroup = ({
             <group ref={groupRef}>
                 {content.map((element, index) =>
                     <Text
-                        tag={tag}
+                        titleIndex={title ? index : false}
                         key={index}
                         height={height}
                         fontStyle={style}
@@ -43,9 +41,7 @@ export const TextGroup = ({
             </group>
         )
     }
-
 }
-
 
 export const Text = ({
     fontStyle,
@@ -56,7 +52,7 @@ export const Text = ({
     height,
     rowStart,
     grid,
-    tag
+    titleIndex
 }) => {
     const splitText = content.split('')
     const htlmTextRef = useRef(splitText.map(() => createRef()))
@@ -64,8 +60,7 @@ export const Text = ({
     const dTextRef = useRef(splitText.map(() => createRef()))
     const groupRef = useRef()
     const charHeight = height || .5
-    const Tag = styled(tag ? tag : 'p')``
-
+    const Tag = styled(typeof titleIndex === 'number' ? `h${titleIndex + 1}` : 'div')``
     if (grid) {
         const x = grid.colsCoords[colStart[grid.breakpoint]]
         return (

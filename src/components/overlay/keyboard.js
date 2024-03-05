@@ -42,6 +42,8 @@ const KeyBoard = ({
                 <ArrowLayout>
                     <KeyRow>
                         <Key
+                            aria-label="Move forklift forward"
+                            aria-pressed={forward || mobileControlForward}
                             active={forward || mobileControlForward}
                             onPointerDown={() => setInput.setMobileControlForward(true)}
                             onPointerUp={() => setInput.setMobileControlForward(false)}
@@ -54,7 +56,10 @@ const KeyBoard = ({
                         </Key>
                     </KeyRow>
                     <KeyRow >
-                        <Key active={left || mobileControlLeft}
+                        <Key
+                            aria-label="Turn forklift left"
+                            aria-pressed={left || mobileControlLeft}
+                            active={left || mobileControlLeft}
                             onPointerDown={() => setInput.setMobileControlLeft(true)}
                             onPointerUp={() => setInput.setMobileControlLeft(false)}
                             onMouseDown={() => setInput.setMobileControlLeft(true)}
@@ -64,7 +69,10 @@ const KeyBoard = ({
                                 <FontAwesomeIcon icon={faArrowLeft} />
                             </IconContainer>
                         </Key>
-                        <Key active={back || mobileControlBack}
+                        <Key
+                            aria-label="Move forklift back"
+                            active={back || mobileControlBack}
+                            aria-pressed={back || mobileControlBack}
                             onPointerDown={() => setInput.setMobileControlBack(true)}
                             onPointerUp={() => setInput.setMobileControlBack(false)}
                             onMouseDown={() => setInput.setMobileControlBack(true)}
@@ -74,7 +82,10 @@ const KeyBoard = ({
                                 <FontAwesomeIcon icon={faArrowDown} />
                             </IconContainer>
                         </Key>
-                        <Key active={right || mobileControlRight}
+                        <Key
+                            aria-label="Turn forklift right"
+                            active={right || mobileControlRight}
+                            aria-pressed={right || mobileControlRight}
                             onPointerDown={() => setInput.setMobileControlRight(true)}
                             onPointerUp={() => setInput.setMobileControlRight(false)}
                             onMouseDown={() => setInput.setMobileControlRight(true)}
