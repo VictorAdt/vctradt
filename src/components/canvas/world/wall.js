@@ -1,5 +1,5 @@
 import { RigidBody } from "@react-three/rapier";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useGrid } from "../../../hooks/use-grid";
 import { isEven } from "../../../utils/misc";
 import { theme } from "../../theme/theme";
