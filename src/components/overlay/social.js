@@ -82,6 +82,14 @@ export const Social = () => {
             delay: i * 50
         }))
     }
+
+    const marginTop = {
+        xs: 1,
+        sm: 1,
+        md: 1,
+        lg: 1,
+        xl: 1,
+    }
     if (grid)
         return (
             <Html
@@ -93,7 +101,7 @@ export const Social = () => {
                 position={[
                     grid.colsCoords[socialsButtonsPos[grid.breakpoint][0]].start,
                     2,
-                    grid.rowCoords[socialsButtonsPos[grid.breakpoint][1]].end
+                    grid.rowCoords[socialsButtonsPos[grid.breakpoint][1]].end + marginTop[grid.breakpoint]
                 ]}
             >
                 <FloatingButtonContainer

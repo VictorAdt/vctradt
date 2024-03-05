@@ -67,7 +67,7 @@ export const Scene = () => {
                     <TextGroup
                         lineHeightModifier={6}
                         fontStyle='normal'
-                        content={[`I'm Victor, a developer`, 'and a graphic designer.', 'Based in Lausanne - ', 'Switzerland', '', `Let's build`, 'something together']}
+                        content={[`I'm Victor, a developer`, 'and a graphic designer.', 'Based in Lausanne - ', 'Switzerland', '', `Let's build`, 'something together.']}
                         marginTop={{ xs: 4.5, sm: 4.5, md: 3.75, lg: 12, xl: 12 }}
                         fontSize={{ xs: 16, sm: 16, md: 20, lg: 20, xl: 20 }}
                         colStart={{ xs: 0, sm: 0, md: 1, lg: 1, xl: 2 }}

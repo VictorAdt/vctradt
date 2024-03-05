@@ -103,6 +103,7 @@ export const Text = ({
                     style={{
                         position: 'static',
                         width: '1000vw',
+                        zIndex: 0,
                     }}
                     position={[grid.colsCoords[colStart[grid.breakpoint]].start, 0.5, positionZ]}
                 >
