@@ -88,8 +88,6 @@ export const Forklift = () => {
                                 solverGroups={0b0000_0000_0000_0001}
                             >
                                 <mesh
-                                    castShadow
-                                    receiveShadow
                                     position={[0, 0, isEven(i) ? -.15 : .15]}>
                                     <boxGeometry args={[0.1, 0.1, 0.2]} />
                                     <meshBasicMaterial color="orange" />
@@ -97,7 +95,7 @@ export const Forklift = () => {
                             </RigidBody>
                             {/* wheel */}
                             <RigidBody ref={wheelRefs.current[i]} position={wheel.wheelPosition} colliders={false} name='rover-chasis' scale={[1, 1, 1]} density={.1} mass={0.1}>
-                                <mesh rotation-x={-Math.PI / 2} castShadow receiveShadow position={[0, 0, isEven(i) ? -.35 : .35]} >
+                                <mesh rotation-x={-Math.PI / 2} position={[0, 0, isEven(i) ? -.35 : .35]} >
                                     <cylinderGeometry args={[0.2, 0.2, 0.2, 32]} />
                                     <meshBasicMaterial color="#140f0f" />
                                 </mesh>

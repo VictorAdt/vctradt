@@ -21,12 +21,12 @@ export const World = () => {
                     position={[0, 0, 0]}
                     rotation={[- Math.PI / 2, 0, 0]}
                 >
-                    <mesh castShadow receiveShadow ref={planeRef} >
+                    <mesh ref={planeRef} >
                         <planeGeometry />
                         <meshBasicMaterial opacity={0} transparent />
                     </mesh>
                 </RigidBody>
-                <mesh castShadow receiveShadow ref={planeRef} scale={[150, 150, 150]} rotation={[- Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
+                <mesh ref={planeRef} scale={[150, 150, 150]} rotation={[- Math.PI / 2, 0, 0]} position={[0, -1, 0]}>
                     <planeGeometry />
                     <meshStandardMaterial color={theme.colors.background} transparent />
                 </mesh>
@@ -34,16 +34,12 @@ export const World = () => {
                 <pointLight
                     color={'yellow'}
                     intensity={11000}
-                    decay={1.5}
                     position={[150, 100, 150]}
-                    castShadow
                 />
                 <pointLight
                     color={'blue'}
                     intensity={10000}
-                    decay={1.5}
                     position={[-150, 100, 150]}
-                    castShadow
                 />
                 {grid.colsCoords.map((_, i) => <Col grid={grid} index={i} key={i} />)}
             </>
